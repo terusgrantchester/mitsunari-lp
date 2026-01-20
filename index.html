@@ -1,97 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Mitsunari - Stop Paying Salary Thieves</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Work Visor 監査サービス | 法的リスクなしで問題社員対策</title>
+    <meta name="description" content="中央区の経営者様へ。「働かないおじさん」に年間800万円も払い続けますか？事実（ログ）に基づく監査で、合法的に自主退職へ導く監査パッケージ。">
     <style>
-        /* 強調用の赤文字スタイル */
-        .highlight { color: #dc2626; font-weight: bold; }
-        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        /* --- 基本設定 --- */
+        :root {
+            --primary-color: #0F172A; /* 信頼のネイビー */
+            --accent-color: #D32F2F;  /* 警告・アクションの赤 */
+            --text-color: #333;
+            --bg-color: #f4f6f9;
+        }
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            color: var(--text-color);
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+        }
+        h1, h2, h3 { font-weight: bold; }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background: #fff;
+        }
+        
+        /* --- 共通コンポーネント --- */
+        .btn-cta {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: var(--accent-color);
+            color: #fff;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+            transition: transform 0.2s;
+        }
+        .btn-cta:hover { transform: translateY(-2px); opacity: 0.9; }
+        .highlight { background: linear-gradient(transparent 60%, #ffeb3b 60%); font-weight: bold; }
+        .red-text { color: var(--accent-color); font-weight: bold; }
+
+        /* --- ヘッダー・FV --- */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2rem;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+        header h1 span {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: normal;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+        header .sub-head {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 20px;
+        }
+
+        /* --- セクション共通 --- */
+        section { padding: 50px 0; border-bottom: 1px solid #eee; }
+        section h2 {
+            text-align: center;
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        section h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 15px auto 0;
+        }
+
+        /* --- 問題提起 (Pain) --- */
+        .pain-list {
+            background-color: #ffebee;
+            padding: 30px;
+            border-radius: 8px;
+            border: 2px solid #ffcdd2;
+        }
+        .pain-list li { margin-bottom: 15px; font-weight: bold; }
+        .cost-box {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .cost-box .price { font-size: 2.5rem; color: var(--accent-color); font-weight: bold; }
+
+        /* --- 解決策・証拠 --- */
+        .story-box {
+            background: #f8f9fa;
+            padding: 30px;
+            border-left: 5px solid var(--primary-color);
+            margin: 30px 0;
+            font-style: italic;
+        }
+
+        /* --- 特徴 (3つの理由) --- */
+        .feature {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+        .feature h3 { color: var(--primary-color); font-size: 1.3rem; }
+
+        /* --- 料金・オファー --- */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .price-table th, .price-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .price-table th { background: #f0f0f0; width: 30%; }
+        .legal-option {
+            background: #1e293b;
+            color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .legal-option h3 { color: #fbbf24; }
+
+        /* --- FAQ --- */
+        .faq-item { margin-bottom: 20px; }
+        .faq-q { font-weight: bold; color: var(--primary-color); cursor: pointer; padding: 10px; background: #eee; border-radius: 4px; }
+        .faq-a { padding: 15px 10px; display: block; }
+
+        /* --- CTA --- */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+        }
+        .cta-section h2 { color: #fff; border-color: #fff; }
+        .cta-box {
+            background: #fff;
+            color: #333;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- スマホ対応 --- */
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .cost-box .price { font-size: 2rem; }
+        }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <header class="max-w-3xl mx-auto px-6 py-20 text-center">
-        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
-            Stop Paying <br><span class="text-red-600">"Salary Thieves"</span>.
+<header>
+    <div class="container">
+        <h1>
+            <span>年間800万円のコスト削減</span>
+            「働かないおじさん」に<br>まだ給料を払い続けますか？
         </h1>
-        <p class="text-xl md:text-2xl text-gray-300 mb-8 font-light">
-            Force them to resign. Legally. Without Lawsuits.
-        </p>
-        <div class="bg-gray-800 border-l-4 border-red-600 p-4 text-left mx-auto max-w-xl shadow-lg">
-            <p class="text-gray-200 italic">
-                "Your kindness is killing your company. The <span class="font-bold">Mitsunari Protocol</span> extracts the cancer from your team using undeniable evidence."
-            </p>
-        </div>
-    </header>
+        <p class="sub-head">事実（ログ）に基づく監査で、合法的に"自主退職"へ導く<br>Work Visor 監査サービス</p>
+        <a href="#contact" class="btn-cta">無料診断を申し込む</a>
+    </div>
+</header>
 
-    <section class="bg-gray-900 py-16">
-        <div class="max-w-2xl mx-auto px-6">
-            <h2 class="text-3xl font-bold mb-8 text-center text-white">You are being robbed every day.</h2>
-            <div class="prose prose-invert prose-lg mx-auto text-gray-300">
-                <p class="mb-4">
-                    You pay them <span class="highlight">$3,000, $4,000, maybe $5,000</span> a month. 
-                    And what do you get?
-                </p>
-                <ul class="list-disc pl-6 space-y-2 mb-6">
-                    <li>YouTube marathons during work hours.</li>
-                    <li>"Fake work" just to look busy.</li>
-                    <li>Toxic influence that destroys your best employees' morale.</li>
-                </ul>
-                <p class="font-semibold text-white">
-                    You want to fire them. But you are scared.
-                </p>
-                <p>
-                    Scared of labor laws. Scared of "Unfair Dismissal" claims. Scared of lawyers.
-                    So you stay silent and keep paying. <br><br>
-                    <span class="text-2xl font-bold text-red-500 block text-center mt-4">This ends today.</span>
-                </p>
-            </div>
+<div class="container">
+
+    <section>
+        <h2>あなたは今、<br>こんな社員に悩んでいませんか？</h2>
+        <ul class="pain-list">
+            <li>勤務時間の半分はYouTubeやネットサーフィン</li>
+            <li>注意すると「仕事してます」と開き直る</li>
+            <li>真面目な若手社員の士気を下げている</li>
+            <li>解雇したいが、法的リスクが怖くて動けない</li>
+        </ul>
+
+        <div class="cost-box">
+            <p>あなたが本当に払っているコスト</p>
+            <div class="price">年間 800万円</div>
+            <p class="red-text">（給料＋社会保険＋退職金積立）</p>
+            <p>これを、来年も払い続けるつもりですか？</p>
         </div>
     </section>
 
-    <section class="max-w-3xl mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold mb-10 text-center">Introduce: Project "Mitsunari"</h2>
+    <section>
+        <h2>感情論ではなく「事実」で勝負する</h2>
+        <div class="story-box">
+            「クビにできないなら、せめて証拠が欲しい。<br>
+            "やっぱりサボってた"って、自分で納得したいんだ。」
+        </div>
+        <p>ある社長の悲痛な叫びから、このサービスは生まれました。<br>
+        労働法は「解雇」を厳しく制限していますが、<span class="highlight">「客観的事実に基づく退職勧奨」は、合法です。</span></p>
+        <p>そして、多くの問題社員は、<strong>自分が"見られている"と知った瞬間、態度が変わります。</strong></p>
+    </section>
+
+    <section>
+        <h2>Work Visor 監査サービスとは？</h2>
+        <p>貴社の社員のPC操作ログを、1週間〜1ヶ月間収集。<br>
+        業務実態を「数字」と「証拠」で可視化する、合法監査パッケージです。</p>
         
-        <div class="grid md:grid-cols-2 gap-8 items-center mb-12">
-            <div>
-                <h3 class="text-xl font-bold text-red-500 mb-2">Automated Resignation Induction</h3>
-                <p class="text-gray-300 mb-4">
-                    This is not a chatty AI. This is a cold-blooded executioner for your HR problems.
-                    We don't use emotions. We use <strong class="text-white">LOGS</strong>.
-                </p>
-                <ol class="list-decimal pl-5 space-y-2 text-sm text-gray-400">
-                    <li><strong class="text-white">Silent Evidence:</strong> Captures window titles & active times.</li>
-                    <li><strong class="text-white">The Confrontation:</strong> Generates undeniable reports.</li>
-                    <li><strong class="text-white">The Exit:</strong> They resign to save face.</li>
-                </ol>
-            </div>
-            <div class="bg-black p-2 rounded-lg border border-gray-700 shadow-2xl">
-                <img src="./evidence.jpg" alt="Terminator Log Evidence" class="w-full rounded opacity-90 hover:opacity-100 transition">
-                <p class="text-xs text-center text-gray-500 mt-2">Figure 1: Actual log of an employee researching recipes during work.</p>
-            </div>
+        <div class="feature">
+            <h3>1. 【証拠】が手に入る</h3>
+            <p>「14時〜17時、YouTube視聴：累計2時間43分」という動かぬ事実。面談で反論の余地を与えません。</p>
         </div>
-
-        <div class="text-center bg-gray-800 p-8 rounded-xl border border-gray-700">
-            <h3 class="text-2xl font-bold mb-4">Cheaper than one month of their salary.</h3>
-            <p class="text-lg mb-8 text-gray-300">
-                Keeping a bad employee costs <span class="highlight">$50,000+/year</span>.<br>
-                Project Mitsunari is a fraction of that.
-            </p>
-            
-            <a href="https://forms.gle/ZE5RBG3b7AYtBqBU8" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-10 rounded-full text-xl transition transform hover:scale-105 shadow-lg">
-                Get The Tool & Script Now
-            </a>
-            <p class="text-sm text-gray-500 mt-4">Instant Access. Clean your team this week.</p>
+        <div class="feature">
+            <h3>2. 【抑止力】が働く</h3>
+            <p>監査を通知するだけで、問題社員の8割は態度を改めます。「見られている」というプレッシャーが最強の武器です。</p>
+        </div>
+        <div class="feature">
+            <h3>3. 【法的リスク】を回避</h3>
+            <p>弁護士監修。プライバシー侵害にならない「業務改善のための監査」として実施します。</p>
         </div>
     </section>
 
-    <footer class="text-center py-10 text-gray-600 text-sm border-t border-gray-800">
-        <p>&copy; 2026 Native Creation. All rights reserved.</p>
-        <p>This tool is for legal compliance and management visibility only.</p>
-    </footer>
+    <section>
+        <h2>料金・プラン</h2>
+        <table class="price-table">
+            <tr>
+                <th>導入費</th>
+                <td>7.5万円〜75万円（規模による）</td>
+            </tr>
+            <tr>
+                <th>監査期間</th>
+                <td>1週間 〜 1ヶ月</td>
+            </tr>
+            <tr>
+                <th>成果物</th>
+                <td>監査レポート（A4・10〜20ページ）</td>
+            </tr>
+        </table>
+
+        <div class="legal-option">
+            <h3>【オプション】リーガル・クロージング</h3>
+            <p>「証拠はあるけど、自分での退職交渉が不安」という社長へ。<br>提携弁護士による退職勧奨の実行・法的交渉を行います。</p>
+            <p style="font-size: 1.2rem; font-weight:bold; margin-top:10px;">完全成功報酬：対象社員の年収の20%</p>
+        </div>
+    </section>
+
+    <section style="text-align: center; background:#fffbe6; border: 2px solid #ffd700;">
+        <h2 style="margin-bottom: 20px; color:#333;">30日間 全額返金保証</h2>
+        <p>レポートの内容が期待と違った場合、理由は問わず全額返金します。<br>
+        あなたにリスクは一切ありません。</p>
+    </section>
+
+    <section>
+        <h2>よくある質問</h2>
+        <div class="faq-item">
+            <div class="faq-q">Q. 社員にバレませんか？</div>
+            <div class="faq-a">A. 事前通知することで抑止力が働くため、公表して実施することをお勧めしますが、秘密裏に行うことも可能です。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Q. プライバシー侵害で訴えられませんか？</div>
+            <div class="faq-a">A. 業務用PCの業務時間中のログ収集に限定するため、就業規則に基づけば法的リスクはほぼゼロです。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Q. 導入に時間はかかりますか？</div>
+            <div class="faq-a">A. リモートインストールも可能なため、最短即日から開始可能です。</div>
+        </div>
+    </section>
+
+</div>
+
+<section class="cta-section" id="contact">
+    <div class="container">
+        <h2>まずは、無料相談（30分）から</h2>
+        <p style="margin-bottom: 30px;">決断を先延ばしにするほど、無駄な人件費は流出し続けます。<br>動くなら、今です。</p>
+        
+        <div class="cta-box">
+            <p style="text-align: left; font-size: 0.9rem; margin-bottom: 20px;">
+                以下のボタンからフォームへ進み、<br>
+                ・会社名<br>
+                ・困っている社員の人数<br>
+                を入力して送信してください。24時間以内に折り返しご連絡します。
+            </p>
+            <a href="https://docs.google.com/forms/" target="_blank" class="btn-cta">無料相談を申し込む</a>
+            <p style="font-size: 0.8rem; margin-top: 10px; color:#666;">※Googleフォームへ移動します</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container" style="text-align: center; padding: 20px; font-size: 0.8rem; color: #666;">
+        <p>Work Visor 監査サービス / 運営：株式会社ネイティブクリエイション<br>
+        ※本サービスは労働法を遵守した合法的な業務監査です。</p>
+    </div>
+</footer>
 
 </body>
 </html>
