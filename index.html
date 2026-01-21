@@ -29,24 +29,23 @@
         }
         
         /* --- ボタンのデザイン（ここが抜けていました） --- */
-/* --- 強制的にボタンを赤くする設定（最優先） --- */
-.cta-button {
-    display: block !important;
-    width: 100% !important;
-    max-width: 400px !important;
-    margin: 30px auto !important;
-    padding: 20px !important;
-    background-color: #D32F2F !important; /* 絶対に赤 */
-    color: #ffffff !important;           /* 絶対に白 */
-    text-align: center !important;
-    font-size: 1.2rem !important;
-    font-weight: bold !important;
-    border-radius: 50px !important;
-    text-decoration: none !important;
-    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4) !important;
-    line-height: 1.4 !important;
-    cursor: pointer !important;
-}
+        .cta-button {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: var(--accent-color) !important;
+            color: #fff !important;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none !important;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            line-height: 1.4;
+            cursor: pointer;
         }
         .cta-button:hover {
             transform: translateY(-2px);
@@ -101,10 +100,10 @@
             <span class="highlight">Work Visor 監査サービス</span>
         </p>
     
-        <a href="https://lin.ee/8dv2QCft" style="display: block; width: 100%; max-width: 400px; margin: 30px auto; padding: 20px; background-color: #D32F2F; color: #ffffff !important; text-align: center; font-size: 1.2rem; font-weight: bold; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4); line-height: 1.4; cursor: pointer;">
-    排除マニュアルをLINEで受け取る<br>
-    <span style="font-size: 0.8em;">(無料・30秒で完了)</span>
-</a>
+        <a href="https://lin.ee/8dv2QCft" class="cta-button">
+            排除マニュアルをLINEで受け取る<br>
+            <span style="font-size: 0.8em;">(無料・30秒で完了)</span>
+        </a>
     </div>
 </header>
 
@@ -120,4 +119,42 @@
         <div class="cost-box">
             <p>あなたが本当に払っているコスト</p>
             <div class="price">年間 800万円</div>
-            <p class="red-text">（給料＋
+            <p class="red-text">（給料＋社会保険＋退職金積立）</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Work Visor 監査サービスとは？</h2>
+        <div class="feature">
+            <h3>1. 【証拠】が手に入る</h3>
+            <p>「14時〜17時、YouTube視聴：累計2時間43分」という動かぬ事実。</p>
+        </div>
+        <div class="feature">
+            <h3>2. 【抑止力】が働く</h3>
+            <p>監査を通知するだけで、問題社員の8割は態度を改めます。</p>
+        </div>
+    </section>
+
+    <section style="text-align: center; background:#fffbe6; border: 2px solid #ffd700;">
+        <h2 style="margin-bottom: 20px; color:#333;">30日間 全額返金保証</h2>
+        <p>内容が期待と違った場合、全額返金します。あなたにリスクはありません。</p>
+    </section>
+</div>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>まずは、無料資料の受け取りから</h2>
+        <div class="cta-box">
+            <p style="text-align: left; font-size: 0.9rem; margin-bottom: 20px;">
+                以下のボタンからLINE公式アカウントへ進み、マニュアルを受け取ってください。
+            </p>
+            <a href="https://lin.ee/8dv2QCft" class="cta-button">
+                排除マニュアルをLINEで受け取る<br>
+                <span style="font-size: 0.8em;">(無料・30秒で完了)</span>
+            </a>        
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
