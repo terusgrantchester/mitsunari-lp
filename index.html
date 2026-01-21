@@ -29,23 +29,24 @@
         }
         
         /* --- ボタンのデザイン（ここが抜けていました） --- */
-        .cta-button {
-            display: block;
-            width: 100%;
-            max-width: 400px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: var(--accent-color) !important;
-            color: #fff !important;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border-radius: 50px;
-            text-decoration: none !important;
-            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-            line-height: 1.4;
-            cursor: pointer;
+/* --- 強制的にボタンを赤くする設定（最優先） --- */
+.cta-button {
+    display: block !important;
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 30px auto !important;
+    padding: 20px !important;
+    background-color: #D32F2F !important; /* 絶対に赤 */
+    color: #ffffff !important;           /* 絶対に白 */
+    text-align: center !important;
+    font-size: 1.2rem !important;
+    font-weight: bold !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4) !important;
+    line-height: 1.4 !important;
+    cursor: pointer !important;
+}
         }
         .cta-button:hover {
             transform: translateY(-2px);
@@ -100,10 +101,10 @@
             <span class="highlight">Work Visor 監査サービス</span>
         </p>
     
-        <a href="https://lin.ee/8dv2QCft" class="cta-button">
-            排除マニュアルをLINEで受け取る<br>
-            <span style="font-size: 0.8em;">(無料・30秒で完了)</span>
-        </a>
+        <a href="https://lin.ee/8dv2QCft" style="display: block; width: 100%; max-width: 400px; margin: 30px auto; padding: 20px; background-color: #D32F2F; color: #ffffff !important; text-align: center; font-size: 1.2rem; font-weight: bold; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4); line-height: 1.4; cursor: pointer;">
+    排除マニュアルをLINEで受け取る<br>
+    <span style="font-size: 0.8em;">(無料・30秒で完了)</span>
+</a>
     </div>
 </header>
 
