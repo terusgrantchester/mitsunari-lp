@@ -28,28 +28,31 @@
             background: #fff;
         }
         
-        /* --- ボタンのデザイン（ここが抜けていました） --- */
+/* --- ボタンのデザイン（ここが抜けていました） --- */
         .cta-button {
             display: block;
             width: 100%;
             max-width: 400px;
             margin: 30px auto;
             padding: 20px;
-            background-color: var(--accent-color) !important;
+            /* background-color: var(--accent-color) !important;  ←元の赤色設定 */
+            background-color: #06C755 !important; /* ←変更：LINE風の緑色に */
             color: #fff !important;
             text-align: center;
             font-size: 1.2rem;
             font-weight: bold;
             border-radius: 50px;
             text-decoration: none !important;
-            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+            /* box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);  ←元の赤色の影 */
+            box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4); /* ←変更：緑色の影に */
             transition: transform 0.2s, box-shadow 0.2s;
             line-height: 1.4;
             cursor: pointer;
         }
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.6);
+            /* box-shadow: 0 6px 20px rgba(211, 47, 47, 0.6);  ←元の赤色のホバー影 */
+            box-shadow: 0 6px 20px rgba(6, 199, 85, 0.6); /* ←変更：緑色のホバー影に */
             opacity: 0.9;
         }
         
